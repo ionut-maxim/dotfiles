@@ -11,3 +11,6 @@ fi
 
 # STARSHIP
 eval "$(starship init zsh)"
+
+# ENVIRONMENT VARIABLES
+export EDITOR="nvim"
