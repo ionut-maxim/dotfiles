@@ -1,0 +1,9 @@
+# https://docs.brew.sh/Homebrew-on-Linux
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu"))  -}}
+#!/bin/bash
+
+sudo apt-get update
+xargs sudo apt-get install -y </dev/stdin <<EOF
+exa
+EOF
+{{ end -}}
