@@ -17,3 +17,6 @@ export EDITOR="nvim"
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
 {{- end }}
+
+# HISTORY
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
