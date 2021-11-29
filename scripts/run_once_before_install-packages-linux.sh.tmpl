@@ -1,8 +1,10 @@
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu"))  -}}
+{{- if (eq .chezmoi.os "linux") -}}
+{{-   if (eq .chezmoi.osRelease.id "ubuntu") -}}
 #!/bin/bash
 
 sudo apt-get update
 xargs sudo apt-get install -y </dev/stdin <<EOF
 exa
 EOF
+{{   end -}}
 {{ end -}}
