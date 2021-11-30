@@ -1,7 +1,7 @@
-# ALIASES
+# aliases
 [ -f .zsh/aliases.zsh ] && source .zsh/aliases.zsh
 
-# COMPLETIONS
+# completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
@@ -9,14 +9,21 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# STARSHIP
+# starship
 eval "$(starship init zsh)"
 
-# ENVIRONMENT VARIABLES
+# environment variables
 export EDITOR="nvim"
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
 {{- end }}
 
-# HISTORY
+# history
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
+[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
