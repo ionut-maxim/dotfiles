@@ -1,27 +1,45 @@
-# aliases
+# -------------------------
+# Aliases
+# -------------------------
 alias ll="exa -la --icons"
 alias tree="exa --tree --icons"
 alias vim="nvim"
 
-# completions
+# -------------------------
+# Completions
+# -------------------------
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
-
   autoload -Uz compinit
   compinit
 fi
 
-# starship
+# -------------------------
+# Starship
+# -------------------------
 eval "$(starship init zsh)"
 
-# environment variables
+# -------------------------
+# Environment Variables
+# -------------------------
 export EDITOR="nvim"
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
 {{- end }}
 
-# history
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# -------------------------
+# History and fzf
+# -------------------------
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+# Auto-completion
+[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+# Key bindings
+source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+# Dracula theme
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+# History
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
 [ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
@@ -29,3 +47,5 @@ setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
+
+# TODO: Section for MACOS defaults
