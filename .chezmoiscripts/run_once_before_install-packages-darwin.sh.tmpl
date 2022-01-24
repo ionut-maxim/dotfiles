@@ -30,4 +30,8 @@ cask "font-fira-code-nerd-font"
 cask "iterm2"
 cask "visual-studio-code"
 EOF
+
+# Load iTerm2 configuration
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 {{ end -}}
