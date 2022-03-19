@@ -1,0 +1,27 @@
+{{ $fields := (onepassword "kmqdwzrtinbnlmvhgrlzweqane").fields -}}
+{{ $certificateAuthorityData := (index $fields 1).value -}}
+{{ $clientCertificateData := (index $fields 2).value -}}
+{{ $clientKeyData := (index $fields 3).value -}}
+{{ $clusterName := (index $fields 4).value -}}
+{{ $userName := (index $fields 5).value -}}
+{{ $serverAddress := (index $fields 6).value -}}
+apiVersion: v1
+kind: Config
+
+clusters:
+- cluster:
+    certificate-authority-data: {{ $certificateAuthorityData }}
+    server: {{ $serverAddress }}
+  name: {{ $clusterName }}
+
+users:
+- name: {{ $userName }}
+  user:
+    client-certificate-data: {{ $clientCertificateData }}
+    client-key-data: {{ $clientKeyData }}
+
+contexts:
+- context:
+    cluster: {{ $clusterName }}
+    user: {{ $userName }}
+  name: {{ $clusterName }}

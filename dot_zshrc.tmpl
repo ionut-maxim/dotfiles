@@ -26,6 +26,7 @@ export EDITOR="nvim"
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
 {{- end }}
+export KUBECONFIG=$HOME/.kube/k3s.yml
 
 # -------------------------
 # History and fzf
