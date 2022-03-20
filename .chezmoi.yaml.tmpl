@@ -1,7 +1,3 @@
 {{ $email := promptString "GitHub email address" -}}
 data:
   email: {{ $email | quote }}
-  kubernetes:
-    secrets:
-    - k8s-k3s-ninthfloor
-  currentContext: k3s-ninthfloor
