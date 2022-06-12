@@ -1,7 +1,20 @@
 # Manual Setup
-1. Install `homebrew`
-2. Install `1password-cli` and `1password`
-3. Enable `Reduce Motion` in Macos Accessibility preferences.
+##  homebrew
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+## 1Password 8
+Should be installed from the App Store
+## 1password-cli
+```bash
+brew install 1password-cli
+```
+## chezmoi
+```bash
+brew install chezmoi
+```
+## Reduce Motion
+Enable it from  Accessibility preferences.
 ![reduce-motion](./assets/reduce-motion.png?raw=true "Accessibility")
 
 # Requirements
