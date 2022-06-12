@@ -12,3 +12,5 @@ eval $(op signin)
 ## Tasks
 - [ ] Add logic to handle work laptop
 - [ ] Add logic for linux
+- [ ] Look into adding `asdf`
+- [ ] Proper management for `kubeconfig` files
