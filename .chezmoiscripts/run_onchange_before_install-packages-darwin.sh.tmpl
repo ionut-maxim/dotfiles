@@ -1,36 +1,54 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
+set -eufo pipefail
+
+{{ $brews := list
+    "bat"
+    "civo"
+    "curl"
+    "exa"
+    "flux"
+    "fzf"
+    "git"
+    "git-delta"
+    "glow"
+    "helm"
+    "jq"
+    "k9s"
+    "kubernetes-cli"
+    "neovim"
+    "python@3"
+    "ripgrep"
+    "rsync"
+    "sqlite"
+    "starship"
+    "terraform"
+    "tmux"
+    "zsh-completions"
+    "yq" -}}
+{{ $casks := list
+    "1password-cli"
+    "docker"
+    "fig"
+    "font-fira-code-nerd-font"
+    "google-chrome"
+    "iterm2"
+    "slack"
+    "telegram"
+    "visual-studio-code"
+    "whatsapp" -}}
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
-brew "bat"
-brew "exa"
-brew "fzf"
-brew "git"
-brew "git-delta"
-brew "glow"
-brew "helm"
-brew "jq"
-brew "k9s"
-brew "kubernetes-cli"
-# brew "mas" 
-brew "neovim"
-brew "python@3.9"
-brew "ripgrep"
-brew "starship"
-brew "terraform"
-brew "tmux"
-brew "zsh-completions"
-brew "yq"
-
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
 tap "homebrew/cask-fonts"
-
-cask "1password-cli"
-cask "docker"
-cask "fig"
-cask "font-fira-code-nerd-font"
-cask "iterm2"
-cask "visual-studio-code"
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
 EOF
+{{ end -}}
 
 # Load iTerm2 configuration
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/iterm2"
