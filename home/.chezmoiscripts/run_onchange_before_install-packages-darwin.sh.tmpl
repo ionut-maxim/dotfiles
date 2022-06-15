@@ -40,6 +40,7 @@ set -eufo pipefail
     "whatsapp" -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "civo/tools"
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
