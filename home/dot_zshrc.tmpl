@@ -1,3 +1,8 @@
+# include function
+include () {
+    [[ -f "$1" ]] && source "$1"
+}
+
 # Fig pre block. Keep at the top of this file.
 export PATH="${PATH}:${HOME}/.local/bin"
 eval "$(fig init zsh pre)"
@@ -30,7 +35,8 @@ export EDITOR="nvim"
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
 {{- end }}
-export KUBECONFIG=$HOME/.kube/k3s.yml
+export KUBECONFIG=$HOME/.kube/ninthfloor.yaml
+include $HOME/.kube/config.sh # for additional kubeconfig files just add them to this script
 
 # -------------------------
 # History and fzf
