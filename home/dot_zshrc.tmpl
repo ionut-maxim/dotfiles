@@ -62,4 +62,4 @@ setopt hist_ignore_space      # ignore commands that start with space
 # TODO: Section for MACOS defaults
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
