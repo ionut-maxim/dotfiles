@@ -23,3 +23,4 @@ Enable it from  Accessibility preferences.
 - [ ] Add logic for linux
 - [ ] Look into adding `asdf`
 - [ ] Proper management for `kubeconfig` files
+- [ ] defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.dock autohide-time-modifier -float 0; killall Dock
