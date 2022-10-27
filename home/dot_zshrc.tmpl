@@ -36,6 +36,7 @@ export EDITOR="nvim"
 export HOMEBREW_NO_AUTO_UPDATE=1
 {{- end }}
 export KUBECONFIG=$HOME/.kube/ninthfloor.yaml
+export PATH=$PATH:$HOME/go/bin
 include $HOME/.kube/config.sh # for additional kubeconfig files just add them to this script
 
 # -------------------------
